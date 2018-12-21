@@ -46,28 +46,42 @@ class AdvertController extends Controller
     public function addAction(Request $request)
     {
         
-        if($request->isMethod("POST")){
+        // if($request->isMethod("POST")){
 
-            $request->getSession()->getFlashBag()->add('info', 'Annonce bien enregistrée');
+        //     $request->getSession()->getFlashBag()->add('info', 'Annonce bien enregistrée');
 
-            // Puis on redirige vers la page de visualisation de cette annonce
-            return $this->redirectToRoute('oc_platform_view', array('id' => 5));
-        }
+        //     // Puis on redirige vers la page de visualisation de cette annonce
+        //     return $this->redirectToRoute('oc_platform_view', array('id' => 5));
+        // }
         
         return $this->redirect('OCPlatformBundle:Advert:add.html.twig');
     }
 
     public function editAction($id, Request $request)
     {
-        if($request->isMethod("POST")){
+     //    if($request->isMethod("POST")){
 
-            $request->getSession()->getFlashBag()->add('info', 'Annonce bien modifiée');
+     //        $request->getSession()->getFlashBag()->add('info', 'Annonce bien modifiée');
 
-            // Puis on redirige vers la page de visualisation de cette annonce
-            return $this->redirectToRoute('oc_platform_view', array('id' => $id));
+     //        // Puis on redirige vers la page de visualisation de cette annonce
+     //        return $this->redirectToRoute('oc_platform_view', array('id' => $id));
 
-        }
-    	return $this->redirect('OCPlatformBundle:Advert:edit.html.twig');
+     //    }
+    	// return $this->redirect('OCPlatformBundle:Advert:edit.html.twig');
+
+        // ...
+    
+    $advert = array(
+      'title'   => 'Recherche développpeur Symfony',
+      'id'      => $id,
+      'author'  => 'Alexandre',
+      'content' => 'Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…',
+      'date'    => new \Datetime()
+    );
+
+    return $this->render('OCPlatformBundle:Advert:edit.html.twig', array(
+      'advert' => $advert
+    ));
     }
 
     public function deleteAction($id)
